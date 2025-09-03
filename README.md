@@ -1,9 +1,11 @@
 # Advanced-Home-Security-System---Arduino-
 
 **Summary**
+
 This home security system implements various Arduino functionalities and components, which include: a PIR motion sensor, a doorbell push button, a keypad for passcode entry, two indicator LEDs, and a servo motor mimicking a rotating security camera. This design is a modular approach where one component contributes to one of three security layers: access control, intrusion detection, and visual monitoring. 
 
 **Instructions:**
+
 **Hardware setup:**
 -	Push button connected to D13
 -	PIR sensor connected to D12
