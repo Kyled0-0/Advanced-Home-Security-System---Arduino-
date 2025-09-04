@@ -27,12 +27,12 @@ const char correctPassword[] = "0307";
 
 Servo myServo;
 
-//states
+//flag
 volatile bool doorbellFlag = false;
 volatile bool motionFlag = false;
-volatile uint32_t timerCounter = 0; 
+volatile unsigned long timerCounter = 0; 
 volatile bool servoSweepFlag = false;
-
+//states
 bool lastDoorbellState = HIGH;
 bool lastMotionState = LOW;
 bool doorUnlocked = false;
@@ -115,7 +115,7 @@ void loop() {
     if (currentDoorbell != lastDoorbellState) {
       lastDoorbellState = currentDoorbell;
       if (currentDoorbell == LOW) {
-        Serial.println("System: Doorbell rang!");
+        Serial.println("System: Doorbell rang >> Someone is at the front door");
       }
     }
   }
@@ -138,7 +138,7 @@ void loop() {
         enteredPassword[index] = '\0';
         if (strcmp(enteredPassword, correctPassword) == 0)
         {
-          Serial.println("System: Password correct. Door unlocked!");
+          Serial.println("System: Password correct >> Door unlocked!");
           doorUnlocked = true;
           digitalWrite(ledGreenPin, HIGH);
           digitalWrite(ledRedPin, LOW);
@@ -155,7 +155,7 @@ void loop() {
 
           if (attemptCount >= 3)
           {
-            Serial.println("System: Passcode failed too many times! Alarm triggered!");
+            Serial.println("System: Passcode failed too many times >> Alarm triggered!");
             alarmTriggered = true;
           }
         }
@@ -185,7 +185,7 @@ void loop() {
   if (servoSweepFlag)
   {
     servoSweepFlag = false;
-    Serial.println("System: Timer triggered single camera sweep");
+    Serial.println("System: Camera sweeeeping");
 
     for (int pos = 30; pos <= 120; pos++)
     {
